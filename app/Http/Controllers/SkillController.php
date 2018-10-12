@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Skill;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
     public function index()
     {
-        return response()->json([
-            [
-            'id' => '1',
-            'title' => 'PHP',
-            'percents' => 50,
-            'category' => 1,
-            'user_id' => 9
-            ],
-            [
-                'id' => '2',
-                'title' => 'Git',
-                'percents' => 70,
-                'category' => 2,
-                'user_id' => 9
-            ],
-        ]);
+        $skills = Skill::all();
+        return response()->json($skills);
+    }
+
+    public function store(Request $request)
+    {
+        $skill = Skill::add($request->all());
+
+        //todo Изменить возвращаемый объект. Нужно возвращать статус?
+        return response()->json($request->all());
     }
 }

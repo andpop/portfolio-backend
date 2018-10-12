@@ -1,0 +1,20 @@
+Index: database/seeds/DatabaseSeeder.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- database/seeds/DatabaseSeeder.php	(revision 44a09b11c97725cf5a2423468e5702649686fefe)
++++ database/seeds/DatabaseSeeder.php	(date 1539208225000)
+@@ -11,6 +11,11 @@
+      */
+     public function run()
+     {
+-        // $this->call(UsersTableSeeder::class);
++        DB::table('skills')->insert([
++            'title' => 'PHP',
++            'percent' => 50,
++            'category' => 1,
++            'user_id' => 9,
++        ]);
+     }
+ }

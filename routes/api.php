@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('skills', 'SkillController@index');
+Route::post('skills', 'SkillController@store');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
