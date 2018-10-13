@@ -20,4 +20,10 @@ class SkillController extends Controller
         //todo Изменить возвращаемый объект. Нужно возвращать статус?
         return response()->json($request->all());
     }
+
+    public function destroy($id)
+    {
+        Skill::find($id)->delete();
+
+    }
 }

@@ -13,8 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('skills', 'SkillController@index');
-Route::post('skills', 'SkillController@store');
+Route::resource('skills', 'SkillController',
+    ['only' => ['index', 'store', 'destroy']]);
+
+//Route::get('skills', 'SkillController@index');
+//Route::post('skills', 'SkillController@store');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
