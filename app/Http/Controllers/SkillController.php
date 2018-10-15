@@ -16,6 +16,8 @@ class SkillController extends Controller
     {
         $skills = Skill::all();
         return response()->json($skills);
+//        return response()->json($skills)->setStatusCode(200);
+//        return response(array($skills), 202);
     }
 
     /**
@@ -38,8 +40,11 @@ class SkillController extends Controller
     {
         $skill = Skill::add($request->all());
 
-        //todo Изменить возвращаемый объект. Нужно возвращать статус?
-        return response()->json($request->all());
+        if ($skill) {
+            return response()->json($request->all())->setStatusCode(201);
+        } else {
+            return response()->json($request->all())->setStatusCode(500);
+        }
     }
 
     /**
@@ -79,11 +84,18 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Skill  $skill
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        Skill::find($id)->delete();
+//        $skill = Skill::findOrFail($id);
+        $skill = Skill::find($id);
+        if ($skill == null) {
+            return response()->json(['message' => "Record {$id} not found"])->setStatusCode(503);
+        } else {
+            $skill->delete();
+            return response()->json(['message' => "Record {$id} was deleted"])->setStatusCode(202);
+        }
     }
 }
