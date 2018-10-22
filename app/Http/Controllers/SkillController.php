@@ -42,9 +42,9 @@ class SkillController extends Controller
         $skill = Skill::add($request->all());
 
         if ($skill) {
-            return response()->json($request->all())->setStatusCode(201);
+            return response()->json($request->all())->setStatusCode(201)->header('Access-Control-Allow-Origin', '*');
         } else {
-            return response()->json($request->all())->setStatusCode(500);
+            return response()->json($request->all())->setStatusCode(500)->header('Access-Control-Allow-Origin', '*');
         }
     }
 
@@ -93,10 +93,10 @@ class SkillController extends Controller
 //        $skill = Skill::findOrFail($id);
         $skill = Skill::find($id);
         if ($skill == null) {
-            return response()->json(['message' => "Record {$id} not found"])->setStatusCode(503);
+            return response()->json(['message' => "Record {$id} not found"])->setStatusCode(503)->header('Access-Control-Allow-Origin', '*');
         } else {
             $skill->delete();
-            return response()->json(['message' => "Record {$id} was deleted"])->setStatusCode(202);
+            return response()->json(['message' => "Record {$id} was deleted"])->setStatusCode(202)->header('Access-Control-Allow-Origin', '*');
         }
     }
 }
