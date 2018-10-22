@@ -15,7 +15,8 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::all();
-        return response()->json($skills);
+//        return response()->json($skills);
+        return response()->json($skills)->header('Access-Control-Allow-Origin', '*');
 //        return response()->json($skills)->setStatusCode(200);
 //        return response(array($skills), 202);
     }
