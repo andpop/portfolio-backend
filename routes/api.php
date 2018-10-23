@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 Route::resource('skills', 'SkillController',
     ['only' => ['index', 'store', 'destroy']]);
 
+Route::resource('posts', 'PostController',
+    ['only' => ['index', 'store', 'destroy']]);
+
 //Route::get('skills', 'SkillController@index');
 //Route::post('skills', 'SkillController@store');
 
